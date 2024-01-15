@@ -1,12 +1,13 @@
 // tests/tasks_test.rs
 use std::{env, fs, io};
 use std::fs::{File, OpenOptions};
-use std::io::{ErrorKind, Seek, SeekFrom};
+use std::io::{ErrorKind};
 use std::string::String;
 use todo_list::{mark_as_done, read_all_tasks, Task, Tasks};
 
 const TEST_FILE_PATH: &str = "test_todo.json";
 
+// Private functions only inside the test scope.
 fn setup() -> Tasks {
     let fs = match OpenOptions::new().read(true).write(true).truncate(true).open(&TEST_FILE_PATH) {
         Ok(fs) => fs,
@@ -41,7 +42,13 @@ fn cleanup() -> io::Result<()> {
     Ok(())
 }
 
+// Public tests
 #[test]
+/*
+    Test: Add New Task
+    Function: Initializes tasks vector
+              Adds a new Task struct into the array and checks for the length of the tasks vector
+*/
 fn test_add_new_task() {
     let mut tasks = setup();
 
@@ -59,6 +66,13 @@ fn test_add_new_task() {
 }
 
 #[test]
+/*
+    Test: Remove Task
+    Function: Initializes new task vector
+              Adds new Task
+              And remove the Task
+              Check length with asserts
+*/
 fn test_remove_task() {
     let mut tasks = setup();
 

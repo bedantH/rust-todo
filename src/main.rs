@@ -5,7 +5,6 @@ use std::io::{ErrorKind};
 
 use todo_list::{create_new, mark_as_done, list_all_todos, read_all_tasks, Tasks};
 
-
 fn main() {
     let args: Vec<_> = env::args().skip(1).collect();
     let file_path = String::from("todo.json");

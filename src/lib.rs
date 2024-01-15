@@ -44,10 +44,10 @@ impl Tasks {
         }
     }
 
-    pub fn add_new_task (
-        &mut self, task: Task) {
+    pub fn add_new_task (&mut self, task: Task) {
         self.tasks.push(task);
     }
+
     pub fn remove_task(&mut self, id: u32) -> bool {
         let initial_len = self.tasks.len();
 
@@ -55,6 +55,7 @@ impl Tasks {
         // Return true if the length changed (i.e., a task was removed)
         self.tasks.len() != initial_len
     }
+
     pub fn save_tasks(&mut self) -> Result<(), &'static str> {
         // Serialize tasks to a temporary string
         let json_string = match serde_json::to_string_pretty(&self.tasks) {
